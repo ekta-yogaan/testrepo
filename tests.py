@@ -1,6 +1,7 @@
 #!/bin/env python3
 import requests
 from django.test import TestCase
+import json
 
 class CRUDTestCase(TestCase):
 
@@ -23,8 +24,12 @@ class CRUDTestCase(TestCase):
     def test_read(self):
         path = ""
         r = requests.get(self.ENDPOINT + path);#, auth=(self.u, self.p))
-        print(r.status_code)
+        json_data = json.loads(response.text)
         self.assertEqual(r.status_code, 200)
+        self.assertEqual(json_data["name"], "USGBC HQ")
+        self.assertEqual(json_data["address"], "USGBC HQ")
+        self.assertEqual(json_data["certification"], "USGBC HQ")
+        self.assertEqual(json_data["leed_id"], 1000000117)
 
     # def test_update(self):
         # path = "/"
