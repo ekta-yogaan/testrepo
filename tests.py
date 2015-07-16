@@ -1,3 +1,4 @@
+#!/bin/env python3
 import requests
 from django.test import TestCase
 
@@ -9,7 +10,6 @@ class CRUDTestCase(TestCase):
 
     def setUp(self):
         print("CRUD setUp")
-        print("ENDPOINT = " + self.ENDPOINT)
     
     def test_init(self):
         self.assertEqual(1+1, 2)
@@ -21,7 +21,7 @@ class CRUDTestCase(TestCase):
         # self.assertEqual(r.status_code, 200)
     
     def test_read(self):
-        path = "/"
+        path = ""
         r = requests.get(self.ENDPOINT + path);#, auth=(self.u, self.p))
         print(r.status_code)
         self.assertEqual(r.status_code, 200)
