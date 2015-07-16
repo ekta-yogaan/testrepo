@@ -1,0 +1,81 @@
+CRUD Tests outline
+
+Create
+    successful:
+        setup
+            none
+        test
+            api call to create building
+            status = 200
+            json = expected_json
+        teardown
+            remove building from db
+    unsuccessful:
+        setup
+            none
+        test
+            api call to pass wrong data for creating
+            status = 404
+            json != expected_json
+        teardown
+            none
+
+Read
+    successful: 
+        setup
+            add new building w/expected_json
+        test
+            api call to read building
+            status = 200
+            json = expected_json
+        teardown
+            remove building from db
+    unsuccessful:
+        setup
+            add new building w/expected_json
+        test
+            api call to read wrong building
+            status = 404
+            json != expected_json
+        teardown
+            remove building from db
+
+Update
+    successful: 
+        setup
+            add new building w/json
+        test
+            api call to update building to expected_json
+            status = 200
+            json = expected_json
+        teardown
+            remove building from db
+    unsuccessful:
+        setup
+            add new building w/expected_json
+        test
+            api call to update non-existent building
+            status = 404
+            json != expected_json
+        teardown
+            remove building from db
+            
+Delete
+    successful: 
+        setup
+            add new building w/expected_json
+        test
+            api call to delete building
+            status = 200
+            json = expected_json of deleted building
+        teardown
+            none
+    unsuccessful:
+        setup
+            add new building w/expected_json
+        test
+            api call to delete non-existent building
+            status = 404
+            json != expected_json
+        teardown
+            remove building from db

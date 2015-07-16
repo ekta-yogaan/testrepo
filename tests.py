@@ -5,14 +5,15 @@ import json
 
 class CRUDTestCase(TestCase):
 
-    ENDPOINT = "https://www.leedon.io"
+    endpoint = "http://localhost:8080/"
     u = ""
     p = ""
 
     def setUp(self):
         print("CRUD setUp")
     
-    def test_init(self):
+    def test_hello_world(self):
+        print("Hello World")
         self.assertEqual(1+1, 2)
     
     # def test_create(self):
@@ -22,14 +23,15 @@ class CRUDTestCase(TestCase):
         # self.assertEqual(r.status_code, 200)
     
     def test_read(self):
-        path = ""
-        r = requests.get(self.ENDPOINT + path);#, auth=(self.u, self.p))
-        json_data = json.loads(response.text)
-        self.assertEqual(r.status_code, 200)
-        self.assertEqual(json_data["name"], "USGBC HQ")
-        self.assertEqual(json_data["address"], "USGBC HQ")
-        self.assertEqual(json_data["certification"], "USGBC HQ")
-        self.assertEqual(json_data["leed_id"], 1000000117)
+        # Create building, add to DB
+        
+        # Retrieve created building
+        path = "get/building"
+        r = requests.get(self.endpoint + path); #, auth=(self.u, self.p))
+        
+        # Run tests
+        self.assertContains(r, "", status_code=200)
+        self.assertJSONEqual(r.json(), '{"name": "USGBC", "address":"2101 L Street", "leed_id": 1000000117, "certification": "platinum"}')
 
     # def test_update(self):
         # path = "/"
